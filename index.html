@@ -1,68 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <style>
-        .column {
-           float: left;
-           width: 50%;
-           padding: 10px;
-           box-sizing: border-box;
-          
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
         }
-        .row::after {
-           content: "";
-           clear: both;
-           display: table;
+        .button {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
-     </style>
+        .button-prime {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .button-prime:hover {
+            background-color: #45a049;
+        }
+        .button-calculator {
+            background-color: #008CBA;
+            color: white;
+        }
+        .button-calculator:hover {
+            background-color: #007B9A;
+        }
+    </style>
 </head>
 <body>
-    <div class="row">
-        <div class="column">          
-           <section>
-            <h2>Arithmetic</h2>
-            <input id="operand1"/> 
-            <label>+</label>
-            <input id="operand2"/>
-            <button onclick="add()">=</button>
-            <label id="sum"></label>  
-        </section>
-        </div>
-        <div class="column">
-            <section>
-                <h2>Prime check</h2>                
-                <label>Number to test:</label>
-                <input id="numberToTest"/>
-                <button onclick="isPrime()">Check</button>
-                <label id="primeCheckResult"></label>  
-            </section>           
-        </div>       
-     </div>
-    
-   
-    <script>
-        async function add() {
-            const operand1Input = document.getElementById("operand1");
-            const operand2Input = document.getElementById("operand2");
-            let n = operand1Input.value;
-            let m = operand2Input.value;
-            let expression=operand1Input.value+"+"+operand2Input.value
-            console.log(expression)
-            const response = await fetch("https://arithmetic-service-ybp6.onrender.com/calculate/" +expression);
-            const sum = await response.json();
-            document.getElementById("sum").innerText = sum;
-        }
-
-        async function isPrime() {
-            const numberToTest = document.getElementById("numberToTest");            
-            let n = numberToTest.value;            
-            const response = await fetch("https://primes-service-yp4f.onrender.com/primes/" + n);
-            const result = await response.json();
-            document.getElementById("primeCheckResult").innerText = result;
-        }
-    </script>
+    <button class="button button-prime" onclick="window.location.href='prime.html'">Prime Number</button>
+    <button class="button button-calculator" onclick="window.location.href='calculator.html'">Calculator</button>
 </body>
 </html>
