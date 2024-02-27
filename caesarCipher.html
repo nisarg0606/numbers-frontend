@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caesar Cipher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            color: #333;
+        }
+        input[type="text"], input[type="number"] {
+            margin: 10px 0;
+            padding: 10px;
+            width: 200px;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        #encodedText {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Caesar Cipher</h1>
+    <input id="textToEncode" type="text" placeholder="Enter text to encode">
+    <!-- <input id="shift" type="number" placeholder="Enter shift value"> -->
+    <button class="button" onclick="encode()">Encode</button>
+    <p id="encodedText"></p>
+
+    <script>
+        async function encode() {
+            const textToEncode = document.getElementById("textToEncode");
+            let text = textToEncode.value;
+
+            const url = new URL("https://cipher-xh27.onrender.com/cipher/caesar/${text}/3");
+
+            console.log(url);
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                alert('HTTP-Error: ' + response.status);
+                return;
+            }
+            console.log(response);
+
+            const data = await response.json();
+            document.getElementById("encodedText").innerText = data.encodedText;
+        }
+    </script>
+</body>
+</html>
