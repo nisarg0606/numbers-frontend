@@ -39,6 +39,8 @@
         #encodedText {
             margin-top: 20px;
             font-weight: bold;
+            background-color: #0056b3;
+            color: white;
         }
     </style>
 </head>
@@ -69,7 +71,7 @@
             console.log(response);
 
             const data = await response.json();
-            document.getElementById("encodedText").innerText = data.cipher;
+            document.getElementById("encodedText").innerText = "encoded text: " + data.cipher;
         }
     </script>
 </body>
