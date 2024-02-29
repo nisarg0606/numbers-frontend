@@ -9,11 +9,19 @@
         body {
             font-family: Arial, sans-serif;
             padding: 20px;
-            background-color: #f0f0f0;
         }
         
         h1 {
             color: #333;
+            text-align: center;
+        }
+        
+        .center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
         
         input[type="text"],
@@ -37,20 +45,23 @@
         }
         
         #encodedText {
-            margin-top: 20px;
-            font-weight: bold;
-            background-color: #0056b3;
+            background-color: #146a8d;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 20px;
             color: white;
         }
     </style>
 </head>
 
 <body>
-    <h1>Caesar Cipher</h1>
-    <input id="textToEncode" type="text" placeholder="Enter text to encode">
-    <!-- <input id="shift" type="number" placeholder="Enter shift value"> -->
-    <button class="button" onclick="encode()">Encode</button>
-    <p id="encodedText"></p>
+    <div class="center">
+        <h1>Caesar Cipher</h1>
+        <input id="textToEncode" type="text" placeholder="Enter text to encode">
+        <!-- <input id="shift" type="number" placeholder="Enter shift value"> -->
+        <button class="button" onclick="encode()">Encode</button>
+        <p id="encodedText"></p>
+    </div>
 
     <script>
         async function encode() {
@@ -71,6 +82,7 @@
             console.log(response);
 
             const data = await response.json();
+            console.log(data);
             document.getElementById("encodedText").innerText = "encoded text: " + data.cipher;
         }
     </script>
