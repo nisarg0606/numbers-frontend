@@ -45,6 +45,7 @@
         }
         
         #encodedText {
+            display: none;
             background-color: #146a8d;
             padding: 10px;
             border-radius: 5px;
@@ -83,6 +84,7 @@
 
             const data = await response.json();
             console.log(data);
+            document.getElementById("encodedText").style.display = "block";
             document.getElementById("encodedText").innerText = "encoded text: " + data.cipher;
         }
     </script>

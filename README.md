@@ -1,4 +1,4 @@
-# Software Engineering Practicum 4, 5, 6 and 7
+# Software Engineering Practicum 4, 5, 6, 7 and 8 
 
 ## Group Members
 1) [Rohit Goud Kalakuntla](https://github.iu.edu/rokala)
