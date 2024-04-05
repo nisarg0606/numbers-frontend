@@ -9,7 +9,7 @@
             align-items: center;
             height: 100vh;
             background-color: #f0f0f0;
-        }
+        }  
         h1 {
             font-size: 24px;
             margin-bottom: 20px;
@@ -19,6 +19,7 @@
             font-size: 20px;
             margin-bottom: 10px;
         }
+      
         .button {
             font-size: 20px;
             padding: 10px 20px;
@@ -29,36 +30,52 @@
             background-color: #4CAF50;
             color: white;
         }
+        
         .button:hover {
             background-color: #45a049;
         }
+        
         #primeCheckResult {
             margin-top: 20px;
             font-size: 20px;
             padding: 10px;
             border-radius: 5px;
         }
+        
         .prime {
             background-color: #4CAF50;
             color: white;
         }
+        
         .not-prime {
             background-color: #f44336;
             color: white;
         }
     </style>
+    <script src="./configuration.js"></script>
 </head>
+
 <body>
+    <div class="row" id="login"></div>
     <h1>Check if a number is prime</h1>
     <input id="numberToTest" type="number" placeholder="Enter a number">
     <button class="button" onclick="isPrime()">Check</button>
     <p id="primeCheckResult"></p>
 
     <script>
+        let hosts = configuration.hosts;
+        displayLogin();
         async function isPrime() {
-            const numberToTest = document.getElementById("numberToTest");            
-            let n = numberToTest.value;            
-            const response = await fetch("https://primes-service-yp4f.onrender.com/primes/" + n);
+            const headers = { 'Authorization': `Bearer ${configuration.token}` };
+            const numberToTest = document.getElementById("numberToTest");
+            let n = numberToTest.value;
+            const response = await fetch(`${hosts.primes_service}/primes/${n}`, { headers });
+            if(response.status === 401) {
+                // alert('You are not authorized to access this service.');
+                alert('Your credentails are invalid. Please login again.');
+                displayLogin();
+                return;
+            }
             const result = await response.json();
             const resultElement = document.getElementById("primeCheckResult");
             if (result) {
@@ -71,4 +88,5 @@
         }
     </script>
 </body>
+
 </html>
